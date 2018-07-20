@@ -11,7 +11,7 @@ Release: 1%{?dist}
 Group: Applications/Internet
 License: ASL 2.0
 URL: https://github.com/EGI-Foundation/nagios-plugin-notebooks
-Source: nagios-plugin-notebooks-%{version}.tar.gz
+Source: nagios_plugin_notebooks-%{version}.tar.gz
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: python-setuptools
@@ -25,7 +25,7 @@ BuildArch: noarch
 Nagios plugins for monitoring EGI notebooks
 
 %prep
-%setup -q -n nagios-plugin-notebooks-%{version}
+%setup -q -n nagios_plugin_notebooks-%{version}
 
 %build
 
