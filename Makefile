@@ -20,3 +20,5 @@ rpm: dist
 
 clean:
 	rm -rf dist
+	rm *.rpm
+	rm *.tar.gz
