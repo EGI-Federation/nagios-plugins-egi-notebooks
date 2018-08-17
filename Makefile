@@ -5,19 +5,18 @@ FILES=Makefile ${SPECFILE}
 PKGVERSION=$(shell python setup.py --version)
 RPM_SOURCES=$(shell rpm --eval '%{_sourcedir}')
 
-sources:
+dist:
 	rm -rf dist
-	python setup.py sdist
-	mkdir -p ${RPM_SOURCES}
-	cp dist/${PKGNAME}-${PKGVERSION}.tar.gz ${RPM_SOURCES}
 	sed -i "s/^Version:.*/Version: ${PKGVERSION}/" ${SPECFILE}
+	python setup.py sdist
+	mv dist/${PKGNAME}-${PKGVERSION}.tar.gz .
 	rm -rf dist
 
-srpm: sources
-	rpmbuild -bs --define='dist .el6' ${SPECFILE}
+srpm: dist
+	rpmbuild -ts --define='dist .el6' ${PKGNAME}-${PKGVERSION}.tar.gz
 
-rpm: sources
-	rpmbuild -ba ${SPECFILE}
+rpm: dist
+	rpmbuild -ta ${PKGNAME}-${PKGVERSION}.tar.gz
 
 clean:
 	rm -rf dist
