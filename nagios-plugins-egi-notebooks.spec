@@ -7,7 +7,7 @@
 
 Summary: Nagios plugin for EGI notebooks
 Name: nagios-plugins-egi-notebooks
-Version: 0.2.2
+Version: 0.2.3
 Release: 1%{?dist}
 Group: Applications/Internet
 License: ASL 2.0
@@ -46,6 +46,10 @@ rm -rf $RPM_BUILD_ROOT
 %{dir}
 
 %changelog
+* Fri Nov 16 2018 Enol Fernandez <enol.fernandez@egi.eu> 0.2.3-1%{dist}
+- Make code python3 compatible
+- Log to stdoutput
+- Add -H and -p options
 * Tue Nov 13 2018 Enol Fernandez <enol.fernandez@egi.eu> 0.2.2-1%{dist}
 - Add dependencies for SNI support
 * Fri Aug 17 2018 Enol Fernandez <enol.fernandez@egi.eu> 0.2.1-1%{dist}
@@ -54,4 +58,3 @@ rm -rf $RPM_BUILD_ROOT
 - Adapt to ARGO probes requirements
 * Fri Jul 20 2018 Enol Fernandez <enol.fernandez@egi.eu> 0.1.0
 - Initial release (Enol Fernandez)
-
