@@ -41,8 +41,7 @@ def main():
     parser.add_argument('-t', '--timeout', default=10, type=int,
                         help='Timeout in seconds of the probe')
 
-    parser.add_argument('--url', default='http://localhost/',
-                        help='URL of the the EGI notebooks endpoint')
+    parser.add_argument('--url', help='URL of the the EGI notebooks endpoint')
 
     parser.add_argument('--status-path', default='services/status/',
                         help=('Path in the endpoint for the monitoring '
@@ -51,6 +50,11 @@ def main():
     parser.add_argument('-v', '--verbose', default=False, action='store_true',
                         help='Be verbose')
 
+    parser.add_argument('-H', '--host', help='Host to be checked')
+
+    parser.add_argument('-p', '--port', default=443, type=int,
+                        help='Port to be checked')
+
     opts = parser.parse_args()
 
     log_level = logging.INFO
@@ -58,7 +62,15 @@ def main():
         log_level = logging.DEBUG
     logging.basicConfig(level=log_level)
 
-    status_url = opts.url
+    # URL takes precedence over -H and -p
+    if not opts.url:
+        if not opts.host:
+            logging.error('Mising url or host to check')
+            sys.exit(status2code('CRITICAL'))
+        status_url = 'https://%s:%d/' % (opts.host, opts.port)
+    else:
+        status_url = opts.url
+
     if not status_url.endswith('/'):
         status_url = status_url + '/'
     full_status_url = urljoin(status_url, opts.status_path)
