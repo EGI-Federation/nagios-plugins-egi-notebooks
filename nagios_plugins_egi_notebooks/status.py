@@ -61,7 +61,7 @@ def main():
     log_level = logging.INFO
     if opts.verbose:
         log_level = logging.DEBUG
-    logging.basicConfig(level=log_level)
+    logging.basicConfig(stream=sys.stdout, level=log_level)
 
     # URL takes precedence over -H and -p
     if not opts.url:
