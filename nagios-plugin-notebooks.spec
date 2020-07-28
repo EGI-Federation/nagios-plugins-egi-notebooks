@@ -16,6 +16,7 @@ Source: nagios_plugin_notebooks-%{version}.tar.gz
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: python-setuptools
 BuildRequires: python-pbr
+BuildRequires: git
 Requires: python
 Requires: python-requests
 Requires: python-argparse
