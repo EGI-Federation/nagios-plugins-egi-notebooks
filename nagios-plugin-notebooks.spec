@@ -43,6 +43,8 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/egi-notebooks-probe
 
 %changelog
+* Fri Jul 20 2018 Enol Fernandez <enol.fernandez@egi.eu> 0.2.4
+- Provide build in CentOS 7 (Enol Fernandez)
+
 * Fri Jul 20 2018 Enol Fernandez <enol.fernandez@egi.eu> 0.1.0
 - Initial release (Enol Fernandez)
-
