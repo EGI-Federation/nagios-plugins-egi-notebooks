@@ -26,7 +26,3 @@ deploy:
   on:
     tags: true
     repo: EGI-Foundation/nagios-plugin-notebooks
-- provider: script
-  script: ls -ltr
-  on:
-    tags: true
