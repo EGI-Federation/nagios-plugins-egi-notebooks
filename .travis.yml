@@ -17,12 +17,16 @@ script:
 - docker exec -i -w /tmp build_container ./build.sh
 - ls rpmbuild/RPMS/noarch/*.rpm
 deploy:
-  provider: releases
+- provider: releases
   api_key:
     secure: xTY+MAj//W/cJPL08Dfl1cU7htzzLl3asQtZR6hkAb/BHXgue4V1d0qHwh6x9uPn+7/Y3CikGwEdHiLD8r+uRIJ2uruX7Ahq5Ko0bP9LufiQMwNtLrqN4n4597UEBVtJAPYLm8mL5r8toEel2eBQ2Xg/cnOvwEp3skpRJrQqRYJiPyflhmSbAZFvfovva1+hXouaWUoffKaw+2vyg34gaEpVUTOTL3op/Z58MkW6z/p2GQTx5B3IHOXrb3Ifwte26nW/nTg+6DY8Wes5EbgNbuAbhozfyNJ+R6EDijjnuDe2hgQ4zN2JoijejJn+9g+ZdTUfus/kI/dFqntp1q5e5aurHpyWpSHuUyrB6tGuWvyp3hR9CqwT/dZn5MMWNnALK7lTy5vnneY30UDr23c3Q0xtSPY12aXd9LDVAcBFpYXtgUXhGYBFRK+pLGVG0mkvB2pGTrOP6CmELwIKR/N7VEqrOC12yQo36Sj4+VF7e5q9zFLwQoEiEiWR+A6mNHQBTekvMWxmmn9nM5G7r9/rWubqGQ6mnG9DX7DJ2OgGCxacS4oAlqHdpjgJbEoG9JMJZb/W8Ps5CSJgUwvzc2puheAwlppEgpQJpoHJ+VtkWJ+eo8yvf0Leg6WCuhXbaaOJOWRU/8JmQpWU2XcKPmeArsAdWYXLVFHqm+ITZCnU8Rc=
   file_glob: true
-  file: "rpmbuild/RPMS/kk/*.rpm"
+  file: 'rpmbuild/RPMS/noarch/*.rpm'
   skip_cleanup: true
   on:
     tags: true
     repo: EGI-Foundation/nagios-plugin-notebooks
+- provider: script
+  script: ls -ltr
+  on:
+    tags: true
