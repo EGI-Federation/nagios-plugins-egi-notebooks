@@ -11,11 +11,11 @@ before_install:
   /bin/bash -c 'while true ; do sleep 1000 ; done'
 install:
 - docker exec -i build_container yum install -y rpm-build rpmlint epel-release yum-utils
-- docker exec -i build_container yum-builddep -y nagios-plugin-notebooks.spec
+- docker exec -i build_container yum-builddep -y nagios-plugins-egi-notebooks.spec
 script:
-- docker exec -i -w /tmp build_container rpmlint nagios-plugin-notebooks.spec
-- docker exec -i -w /tmp build_container ./build.sh
-- ls rpmbuild/RPMS/noarch/*.rpm
+- docker exec -i -w /tmp build_container rpmlint nagios-plugins-egi-notebooks.spec
+- docker exec -i -w /tmp build_container make rpm
+- docker exec -i -w /tmp build_container yum localinstall -y rpmbuild/RPMS/noarch/*.rpm
 deploy:
 - provider: releases
   api_key:
