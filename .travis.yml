@@ -15,6 +15,7 @@ install:
 script:
 - docker exec -i -w /tmp build_container rpmlint nagios-plugins-egi-notebooks.spec
 - docker exec -i -w /tmp build_container make rpm
+- docker exec -i -w /tmp build_container yum localinstall -y rpmbuild/RPMS/noarch/*.rpm
 deploy:
 - provider: releases
   api_key:
