@@ -53,7 +53,7 @@ rm -rf $RPM_BUILD_ROOT
 %{dir}
 
 %changelog
-* Fri Jul 20 2018 Enol Fernandez <enol.fernandez@egi.eu> 0.2.4
+* Thu Jul 30 2020 Enol Fernandez <enol.fernandez@egi.eu> 0.2.4
 - Provide build in CentOS 7 (Enol Fernandez)
 * Fri Nov 16 2018 Enol Fernandez <enol.fernandez@egi.eu> 0.2.3-1%{dist}
 - Make code python3 compatible
