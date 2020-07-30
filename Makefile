@@ -1,24 +1,21 @@
 PKGNAME=nagios_plugins_egi_notebooks
 SPECFILE=nagios-plugins-egi-notebooks.spec
 FILES=Makefile ${SPECFILE}
+build=$(shell pwd)/rpmbuild
+
 
 PKGVERSION=$(shell python setup.py --version)
-RPM_SOURCES=$(shell rpm --eval '%{_sourcedir}')
 
 dist:
-	rm -rf dist
 	sed -i "s/^Version:.*/Version: ${PKGVERSION}/" ${SPECFILE}
 	python setup.py sdist
-	mv dist/${PKGNAME}-${PKGVERSION}.tar.gz .
-	rm -rf dist
 
 srpm: dist
-	rpmbuild -ts ${PKGNAME}-${PKGVERSION}.tar.gz
+	rpmbuild -ts --define='_topdir ${build}' dist/${PKGNAME}-${PKGVERSION}.tar.gz
 
 rpm: dist
-	rpmbuild -ta ${PKGNAME}-${PKGVERSION}.tar.gz
+	rpmbuild -ta --define='_topdir ${build}' dist/${PKGNAME}-${PKGVERSION}.tar.gz
 
 clean:
 	rm -rf dist
-	rm *.rpm
-	rm *.tar.gz
+	rm -rf ${build}

@@ -7,7 +7,7 @@
 
 Summary: Nagios plugin for EGI notebooks
 Name: nagios-plugins-egi-notebooks
-Version: 0.1.0
+Version: 0.2.4
 Release: 1%{?dist}
 Group: Applications/Internet
 License: ASL 2.0
@@ -18,6 +18,7 @@ BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: python-setuptools
 BuildRequires: python-pbr
 BuildRequires: git
+BuildRequires: make
 Requires: python
 Requires: python-requests
 Requires: python-six
