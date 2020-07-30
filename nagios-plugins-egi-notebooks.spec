@@ -11,7 +11,7 @@ Version: 0.2.4
 Release: 1%{?dist}
 Group: Applications/Internet
 License: ASL 2.0
-URL: https://github.com/EGI-Foundation/nagios-plugin-notebooks
+URL: https://github.com/EGI-Foundation/nagios-plugins-egi-notebooks
 Source: nagios_plugins_egi_notebooks-%{version}.tar.gz
 
 BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
