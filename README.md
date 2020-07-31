@@ -5,7 +5,7 @@ to get the latest status report of the service and return OK, CRITICAL or WARNIN
 
 ## Usage
 
-```
+```sh
 $ egi-notebooks-probe -h
 usage: egi-notebooks-probe [-h] [-t TIMEOUT] [--url URL]
                            [--status-path STATUS_PATH] [-v] [-H HOST]
