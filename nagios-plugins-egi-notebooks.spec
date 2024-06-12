@@ -16,6 +16,7 @@ BuildRequires: pyproject-rpm-macros
 BuildRequires: make
 Requires:      python3-requests
 Requires:      python3-six
+BuildRequires: python3-wheel
 
 %description
 Nagios plugins for monitoring EGI notebooks
