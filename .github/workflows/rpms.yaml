@@ -21,7 +21,7 @@ jobs:
           dnf install -y dnf-plugins-core
           dnf config-manager --set-enabled crb
           dnf install -y make rpm-build rpmlint
-          dnf builddep -y nagios-plugin-egi-notebooks.spec
+          dnf builddep -y nagios-plugins-egi-notebooks.spec
       - name: build rpm
         run: |
           make rpm
