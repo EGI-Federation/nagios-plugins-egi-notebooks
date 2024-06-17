@@ -5,12 +5,10 @@ Summary:       Nagios plugin for EGI notebooks
 Name:          nagios-plugins-egi-notebooks
 Version:       0.3.0
 Release:       1%{?dist}
-Group:         Applications/Internet
 License:       ASL 2.0
 URL:           https://github.com/EGI-Foundation/nagios-plugins-egi-notebooks
 Source:        nagios_plugins_egi_notebooks-%{version}.tar.gz
 BuildArch:     noarch
-BuildRoot:     %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 BuildRequires: python3-devel
 BuildRequires: pyproject-rpm-macros
 BuildRequires: make
@@ -30,9 +28,6 @@ Nagios plugins for monitoring EGI notebooks
 %install
 %pyproject_install
 %pyproject_save_files '*' +auto
-
-%clean
-rm -rf $RPM_BUILD_ROOT
 
 %files -f %{pyproject_files}
 
