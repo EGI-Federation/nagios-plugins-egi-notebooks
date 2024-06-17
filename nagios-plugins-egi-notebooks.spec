@@ -1,36 +1,20 @@
 #
 # nagios-plugins-egi-notebooks RPM
 #
-
-%{!?python_sitelib: %global python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib()")}
-%define dir /usr/libexec/argo-monitoring/probes/eu.egi.notebooks
-
-Summary: Nagios plugin for EGI notebooks
-Name: nagios-plugins-egi-notebooks
-Version: 0.2.4
-Release: 1%{?dist}
-Group: Applications/Internet
-License: ASL 2.0
-URL: https://github.com/EGI-Foundation/nagios-plugins-egi-notebooks
-Source: nagios_plugins_egi_notebooks-%{version}.tar.gz
-
-BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
-BuildRequires: python-setuptools
-BuildRequires: python-pbr
-BuildRequires: git
+Summary:       Nagios plugin for EGI notebooks
+Name:          nagios-plugins-egi-notebooks
+Version:       0.3.0
+Release:       1%{?dist}
+License:       ASL 2.0
+URL:           https://github.com/EGI-Foundation/nagios-plugins-egi-notebooks
+Source:        nagios_plugins_egi_notebooks-%{version}.tar.gz
+BuildArch:     noarch
+BuildRequires: python3-devel
+BuildRequires: pyproject-rpm-macros
 BuildRequires: make
-Requires: python
-Requires: python-requests
-Requires: python-six
-%if 0%{?el6}
-# This is to enable SNI in python < 2.7.9
-Requires: pyOpenSSL
-Requires: python2-ndg_httpsclient
-# argparse explicitly needed for py2.6
-Requires: python-argparse
-%endif
-
-BuildArch: noarch
+Requires:      python3-requests
+Requires:      python3-six
+BuildRequires: python3-wheel
 
 %description
 Nagios plugins for monitoring EGI notebooks
@@ -39,21 +23,17 @@ Nagios plugins for monitoring EGI notebooks
 %setup -q -n nagios_plugins_egi_notebooks-%{version}
 
 %build
+%pyproject_wheel
 
 %install
-rm -rf $RPM_BUILD_ROOT
-python setup.py install --root $RPM_BUILD_ROOT --install-scripts %{dir}
+%pyproject_install
+%pyproject_save_files '*' +auto
 
-
-%clean
-rm -rf $RPM_BUILD_ROOT
-
-%files
-%defattr(-,root,root,-)
-%{python_sitelib}/nagios_plugins_egi_notebooks*
-%{dir}
+%files -f %{pyproject_files}
 
 %changelog
+* Wed Jun 12 2024 Enol Fernandez <enol.fernandez@egi.eu> 0.3.0
+- Migrate to EL9 (Enol Fernandez)
 * Thu Jul 30 2020 Enol Fernandez <enol.fernandez@egi.eu> 0.2.4
 - Provide build in CentOS 7 (Enol Fernandez)
 * Fri Nov 16 2018 Enol Fernandez <enol.fernandez@egi.eu> 0.2.3-1%{dist}

@@ -4,11 +4,12 @@ FILES=Makefile ${SPECFILE}
 build=$(shell pwd)/rpmbuild
 
 
-PKGVERSION=$(shell python setup.py --version)
+PKGVERSION=$(shell python3 setup.py --version)
 
 dist:
+	rm -rf dist
 	sed -i "s/^Version:.*/Version: ${PKGVERSION}/" ${SPECFILE}
-	python setup.py sdist
+	python3 setup.py sdist
 
 srpm: dist
 	rpmbuild -ts --define='_topdir ${build}' dist/${PKGNAME}-${PKGVERSION}.tar.gz
