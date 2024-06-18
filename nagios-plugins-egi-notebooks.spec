@@ -6,7 +6,7 @@ Name:          nagios-plugins-egi-notebooks
 Version:       0.3.0
 Release:       1%{?dist}
 License:       ASL 2.0
-URL:           https://github.com/EGI-Foundation/nagios-plugins-egi-notebooks
+URL:           https://github.com/EGI-Federation/nagios-plugins-egi-notebooks
 Source:        nagios_plugins_egi_notebooks-%{version}.tar.gz
 BuildArch:     noarch
 BuildRequires: python3-devel
