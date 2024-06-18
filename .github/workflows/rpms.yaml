@@ -53,13 +53,12 @@ jobs:
         with:
           name: RPMS
           path: rpms/
-      - name: Debug
-        run: |
-          ls -lR
-#      - name: Upload artifact signatures to GitHub Release
-#        env:
-#          GITHUB_TOKEN: ${{ github.token }}
-#        run: >-
-#          gh release upload
-#          '${{ github.ref_name }}' rpms/RPMS/noarch/*
-#          --repo '${{ github.repository }}'
+      - name: Upload artifacts to GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: >-
+          gh release upload
+          '${{ github.ref_name }}'
+          rpms/rpmbuild/RPMS/noarch/*
+          rpms/rpmbuild/SRPMS/*
+          --repo '${{ github.repository }}'
