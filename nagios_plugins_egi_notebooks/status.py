@@ -19,15 +19,13 @@ def status2code(status):
 def get_notebook_status(status_url, timeout=10):
     logging.debug('Querying %s for status', status_url)
     try:
-        r = requests.get(status_url, timeout=timeout,
-                         headers={'accept': 'application/json'})
+        r = requests.get(status_url, timeout=timeout)
         r.raise_for_status()
-        status = r.json()
-        logging.debug('Full status message: %s' % status)
-        logging.info("%s: %s", status['code'], status['msg'])
-        return status2code(status['code'])
+        logging.debug('Full message: %s' % r.text)
+        logging.info("%s: %s", r.reason, r.status_code)
+        return status2code(r.reason)
     except (ConnectionError, HTTPError) as e:
-        logging.info("CRITICAL: Unable to get status, %s", e.message)
+        logging.info("CRITICAL: Unable to get status, %s", e)
         return status2code('CRITICAL')
 
 
@@ -44,7 +42,7 @@ def main():
 
     parser.add_argument('--url', help='URL of the the EGI notebooks endpoint')
 
-    parser.add_argument('--status-path', default='services/status/',
+    parser.add_argument('--status-path', default='hub/metrics',
                         help=('Path in the endpoint for the monitoring '
                               'service'))
 
@@ -71,7 +69,5 @@ def main():
     else:
         status_url = opts.url
 
-    if not status_url.endswith('/'):
-        status_url = status_url + '/'
     full_status_url = urljoin(status_url, opts.status_path)
     sys.exit(get_notebook_status(full_status_url, opts.timeout))
