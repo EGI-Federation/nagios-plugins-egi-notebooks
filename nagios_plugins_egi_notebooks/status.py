@@ -2,10 +2,10 @@ import argparse
 import logging
 import sys
 
-from six.moves.urllib.parse import urljoin
-
 import requests
 from requests.exceptions import ConnectionError, HTTPError
+from six.moves.urllib.parse import urljoin
+
 
 
 def status2code(status):
