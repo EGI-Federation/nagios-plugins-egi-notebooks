@@ -7,7 +7,6 @@ from requests.exceptions import ConnectionError, HTTPError
 from six.moves.urllib.parse import urljoin
 
 
-
 def status2code(status):
     code_map = {
         "OK": 0,
