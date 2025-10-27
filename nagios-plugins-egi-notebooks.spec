@@ -11,10 +11,11 @@ Source:        nagios_plugins_egi_notebooks-%{version}.tar.gz
 BuildArch:     noarch
 BuildRequires: python3-devel
 BuildRequires: pyproject-rpm-macros
+BuildRequires: python3-wheel
+BuildRequires: python3-build
 BuildRequires: make
 Requires:      python3-requests
 Requires:      python3-six
-BuildRequires: python3-wheel
 
 %description
 Nagios plugins for monitoring EGI notebooks

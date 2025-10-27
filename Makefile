@@ -9,7 +9,7 @@ PKGVERSION=$(shell python3 setup.py --version)
 dist:
 	rm -rf dist
 	sed -i "s/^Version:.*/Version: ${PKGVERSION}/" ${SPECFILE}
-	python3 setup.py sdist
+	python3 -m build . --sdist
 
 srpm: dist
 	rpmbuild -ts --define='_topdir ${build}' dist/${PKGNAME}-${PKGVERSION}.tar.gz
