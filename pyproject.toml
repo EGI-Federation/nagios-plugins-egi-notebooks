@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "nagios_plugins_egi_notebooks"
+description = "EGI Notebooks nagios plugin"
+readme = "README.md"
+authors = [
+	{name = "Enol Fernandez", email = "enol.fernandez@egi.eu"}
+]
+version = "0.3.0"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+classifiers = [
+ "Intended Audience :: Information Technology",
+ "Intended Audience :: System Administrators",
+ "Operating System :: POSIX :: Linux",
+ "Programming Language :: Python",
+ "Topic :: System :: Monitoring",
+]
+dependencies = [
+  "requests",
+  "six",
+]
+
+[project.urls]
+HomePage = "https://github.com/EGI-Federation/nagios-plugins-egi-notebooks"
+
+[project.scripts]
+egi-notebooks-probe = "nagios_plugins_egi_notebooks.status:main"
